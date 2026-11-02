@@ -1,0 +1,6 @@
+patient_id,first_name,last_name,birth_date
+P001,Alex,Taylor,1984-02-12
+P002,Jordan,Lee,
+P002,Pat,Reed,1992-04-09
+P004,,Nguyen,2030-01-01
+P005,Chris,Green,not-a-date

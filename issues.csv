@@ -1,0 +1,10 @@
+entity,record_id,issue
+patient,P002,duplicate_patient_id
+patient,P002,birth_missing_date
+patient,P002,duplicate_patient_id
+patient,P004,missing_name
+patient,P004,birth_future_date
+patient,P005,birth_invalid_date
+encounter,E002,unmatched_patient_id
+encounter,E003,encounter_future_date
+encounter,E004,encounter_invalid_date

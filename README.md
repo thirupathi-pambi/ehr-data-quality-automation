@@ -1,35 +1,56 @@
 # EHR Data Quality Audit Automation
 
-> **Portfolio demonstration | Synthetic / fictional data only**
+![Python](https://img.shields.io/badge/python-3.10%2B-blue) ![License](https://img.shields.io/badge/license-MIT-green)
 
-Audits synthetic patient demographics and encounters for missing identifiers, duplicate IDs, invalid dates, and future-dated visits.
+A Python audit script that scans patient and encounter data for common integrity problems and produces an issue register you can hand to a data owner for remediation.
 
-## What this demonstrates
-- Run configurable record-level checks
-- Produce machine-readable exception reports
-- Document remediation priorities
+> Built on synthetic data only. No real patient information is included.
+
+## Why this exists
+
+Reporting is only as trustworthy as the underlying EHR data. Missing identifiers, duplicate IDs, and impossible dates quietly corrupt dashboards and downstream interfaces. This project automates the first-pass checks so problems are found and tracked instead of discovered in a report.
+
+## What it checks
+
+- Missing patient or encounter identifiers
+- Duplicate IDs
+- Invalid dates
+- Future-dated visits
+
+Every finding is written as a row in an issue register CSV so it can be triaged, assigned, and re-checked after fixes.
+
+## Project structure
+
+```
+.
+├── data/
+│   ├── patients.csv           # fictional patient demographics
+│   └── encounters.csv         # fictional encounters
+├── src/
+│   └── main.py                # audit checks and issue register export
+├── tests/
+│   └── test_main.py
+├── output/
+│   └── issues.csv             # generated issue register
+├── LICENSE
+└── README.md
+```
 
 ## Quick start
+
+Requires Python 3.10+ (standard library only). Run from the repository root.
+
 ```bash
-python src/main.py
+python src/main.py                      # writes output/issues.csv
 python -m unittest discover -s tests
 ```
 
-Python 3.10+ is recommended. Core functionality uses the Python standard library; no API keys or patient records are required. Run commands from the repository root.
+## Limitations and next steps
 
-## Repository contents
-- `data/`: fictional patient and encounter CSVs
-- `src/main.py`: auditing checks
-- `output/issues.csv`: generated issue register
-
-## Relevant skills
-Python, data integrity, EHR, clinical analytics, auditability
-
-## Data and privacy
-All records, facilities, identifiers, events and organizations in this repository are fabricated for demonstrations. This is **not** a production clinical system and does not contain real protected health information (PHI). Do not upload real patient data or confidential employer files. Outputs do not substitute for clinical, privacy, security, or regulatory review.
-
-## How to discuss in an interview
-Explain the input, validations or transformations, measurable outputs, tests, and what you would change for a real deployment (authentication, audit logs, monitoring, regulatory review, and secure storage). Describe this as a **personal portfolio project**, not as an implementation at an employer.
+- Rules are fixed in code; a production version would load them from configuration.
+- Checks are record-level only; cross-record rules (for example overlapping encounters) are not covered.
+- Possible extensions: severity levels, trend reporting across runs, a SQL data source in place of CSV, and scheduled runs with alerting.
 
 ## License
-MIT — see [LICENSE](LICENSE).
+
+MIT. See [LICENSE](LICENSE).

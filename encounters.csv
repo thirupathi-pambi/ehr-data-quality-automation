@@ -1,0 +1,5 @@
+encounter_id,patient_id,encounter_date
+E001,P001,2026-01-10
+E002,P999,2026-02-01
+E003,P004,2035-01-01
+E004,P002,bad-date

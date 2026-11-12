@@ -51,6 +51,3 @@ python -m unittest discover -s tests
 - Checks are record-level only; cross-record rules (for example overlapping encounters) are not covered.
 - Possible extensions: severity levels, trend reporting across runs, a SQL data source in place of CSV, and scheduled runs with alerting.
 
-## License
-
-MIT. See [LICENSE](LICENSE).
